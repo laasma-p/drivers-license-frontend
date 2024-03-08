@@ -13,7 +13,6 @@ const Instructions = () => {
           Maximum of five mistakes are allowed to pass the test. One mistake
           counts as when one or more statement in one question are incorrect.
         </li>
-        <li>You can go back to the questions as needed.</li>
         <li>
           After you have completed the test, click on "Finish" to submit the
           answers.
