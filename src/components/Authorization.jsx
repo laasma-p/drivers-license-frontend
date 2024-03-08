@@ -13,7 +13,7 @@ const Authorization = () => {
           type="text"
           id="code"
         />
-        <button className="md:text-lg border-0 bg-green-500 hover:bg-green-800 py-2 px-6 md:px-10 transition-colors hover:text-gray-100 mx-auto cursor-pointer rounded-md">
+        <button className="md:text-lg border-0 bg-green-500 hover:bg-green-800 py-2 px-6 md:px-10 transition-colors hover:text-gray-100 mx-auto rounded-md">
           Continue
         </button>
       </form>
