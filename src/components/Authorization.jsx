@@ -1,6 +1,6 @@
 const Authorization = () => {
   return (
-    <div className="w-full flex flex-col items-center pt-60">
+    <div className="w-full flex flex-col items-center pt-40">
       <form
         method="POST"
         className="flex flex-col items-center font-sans p-8 mx-6"
