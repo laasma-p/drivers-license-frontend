@@ -5,7 +5,7 @@ import Quiz from "./containers/Quiz";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="h-dvh bg-gray-100">
       <Authorization />
       <Instructions />
       <Quiz />
