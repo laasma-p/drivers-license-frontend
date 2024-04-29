@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 const Authorization = () => {
+  const [enteredCode, setEnteredCode] = useState("");
+
+  const enteredCodeHandler = (event) => {
+    setEnteredCode(event.target.value);
+  };
+
   return (
     <div className="w-full flex flex-col items-center pt-40">
       <form
@@ -12,8 +20,13 @@ const Authorization = () => {
           className="max-w-full mt-8 mb-4 p-2 md:w-4/6 mx-auto border-2 border-gray-400 rounded-md"
           type="text"
           id="code"
+          value={enteredCode}
+          onChange={enteredCodeHandler}
         />
-        <button className="md:text-lg border-0 bg-sky-400 hover:bg-sky-700 py-2 px-6 md:px-10 transition-colors hover:text-gray-100 mx-auto rounded-md">
+        <button
+          type="submit"
+          className="md:text-lg border-0 bg-sky-400 hover:bg-sky-700 py-2 px-6 md:px-10 transition-colors hover:text-gray-100 mx-auto rounded-md"
+        >
           Continue
         </button>
       </form>
