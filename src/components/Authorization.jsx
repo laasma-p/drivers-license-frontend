@@ -1,16 +1,26 @@
 import { useState } from "react";
 
-const Authorization = () => {
+const Authorization = ({ onAuthorization }) => {
   const [enteredCode, setEnteredCode] = useState("");
 
   const enteredCodeHandler = (event) => {
     setEnteredCode(event.target.value);
   };
 
+  const authorizeCodeHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      await onAuthorization(enteredCode);
+    } catch (error) {
+      console.log("Cannot verify the code", error.message);
+    }
+  };
+
   return (
     <div className="w-full flex flex-col items-center pt-40">
       <form
-        method="POST"
+        onSubmit={authorizeCodeHandler}
         className="flex flex-col items-center font-sans p-8 mx-6"
       >
         <label htmlFor="code" className="px-4 text-lg md:text-2xl text-center">
