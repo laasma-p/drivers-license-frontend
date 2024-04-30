@@ -5,7 +5,9 @@ const Quiz = () => {
   return (
     <>
       <Timer />
-      <QuizCard />
+      <div className="w-full flex justify-center">
+        <QuizCard />
+      </div>
     </>
   );
 };
