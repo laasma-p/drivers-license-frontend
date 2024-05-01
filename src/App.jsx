@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [displayQuiz, setDisplayQuiz] = useState(false);
 
   const authorizationHandler = async (enteredCode) => {
     try {
@@ -25,14 +26,18 @@ function App() {
     }
   };
 
+  const navigateToQuizHandler = () => {
+    setDisplayQuiz(true);
+  };
+
   return (
     <div className="h-dvh bg-gray-100">
       {!isAuthorized && (
         <Authorization onAuthorization={authorizationHandler} />
       )}
-      {isAuthorized && (
+      {isAuthorized && !displayQuiz && (
         <>
-          <Instructions />
+          <Instructions onNavigate={navigateToQuizHandler} />
           <Quiz />
         </>
       )}
