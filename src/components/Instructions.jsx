@@ -1,4 +1,13 @@
-const Instructions = () => {
+import { useState } from "react";
+
+const Instructions = ({ onNavigate }) => {
+  const [continueClick, setContinueClick] = useState(false);
+
+  const navigateToNextHandler = () => {
+    setContinueClick(true);
+    onNavigate();
+  };
+
   return (
     <div className="flex flex-col justify-start sm:w-full xl:w-9/12 mx-auto px-8 md:px-32 pt-8 sm:pt-28">
       <h1 className="text-xl md:text-2xl">Welcome to the theory exam.</h1>
@@ -28,7 +37,10 @@ const Instructions = () => {
         button, the test starts.
       </p>
       <div className="flex justify-center sm:justify-end">
-        <button className="text-md sm:text-lg border-0 bg-sky-400 hover:bg-sky-700 mt-4 mb-4 sm:mb-0 sm:mt-12 py-2 px-6 sm:px-10 transition-colors hover:text-gray-100 rounded-md">
+        <button
+          onClick={navigateToNextHandler}
+          className="text-md sm:text-lg border-0 bg-sky-400 hover:bg-sky-700 mt-4 mb-4 sm:mb-0 sm:mt-12 py-2 px-6 sm:px-10 transition-colors hover:text-gray-100 rounded-md"
+        >
           Continue
         </button>
       </div>
