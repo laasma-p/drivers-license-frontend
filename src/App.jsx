@@ -38,9 +38,9 @@ function App() {
       {isAuthorized && !displayQuiz && (
         <>
           <Instructions onNavigate={navigateToQuizHandler} />
-          <Quiz />
         </>
       )}
+      {isAuthorized && displayQuiz && <Quiz />}
     </div>
   );
 }
