@@ -18,28 +18,33 @@ const Authorization = ({ onAuthorization }) => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center pt-40">
-      <form
-        onSubmit={authorizeCodeHandler}
-        className="flex flex-col items-center font-sans p-8 mx-6"
-      >
-        <label htmlFor="code" className="px-4 text-lg md:text-2xl text-center">
-          Enter the code you have received from the examiner:
-        </label>
-        <input
-          className="max-w-full mt-8 mb-4 p-2 md:w-4/6 mx-auto border-2 border-gray-400 rounded-md"
-          type="text"
-          id="code"
-          value={enteredCode}
-          onChange={enteredCodeHandler}
-        />
-        <button
-          type="submit"
-          className="md:text-lg border-0 bg-sky-400 hover:bg-sky-700 py-2 px-6 md:px-10 transition-colors hover:text-gray-100 mx-auto rounded-md"
+    <div className="w-full font-sans">
+      <p className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center">
+        Enter the code you have received from the examiner
+      </p>
+      <div className="flex justify-center">
+        <form
+          onSubmit={authorizeCodeHandler}
+          className="w-5/6 flex flex-col max-w-md pb-6"
         >
-          Continue
-        </button>
-      </form>
+          <label htmlFor="code" className="text-gray-950 pb-1 text-lg">
+            Code
+          </label>
+          <input
+            className="text-gray-950 mb-4 p-2 border border-gray-400 focus:border-2 focus:border-gray-950 outline-0 rounded-md"
+            type="text"
+            id="code"
+            value={enteredCode}
+            onChange={enteredCodeHandler}
+          />
+          <button
+            type="submit"
+            className="text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 rounded-md transition-all"
+          >
+            Continue
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
