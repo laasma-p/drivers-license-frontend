@@ -11,7 +11,9 @@ const Instructions = ({ onNavigate }) => {
   return (
     <div className="flex flex-col justify-start sm:w-full xl:w-9/12 mx-auto px-8 md:px-32 pt-8 sm:pt-28">
       <h1 className="text-xl md:text-2xl">Welcome to the theory exam.</h1>
-      <p className="text-md md:text-lg">The instructions for it as follows:</p>
+      <p className="text-md md:text-lg">
+        The instructions for it are as follows:
+      </p>
       <ul className="mt-6 mb-4 w-full text-md md:text-lg">
         <li>
           You have 25 minutes to fill out the test. Each question consists of an
@@ -20,7 +22,7 @@ const Instructions = ({ onNavigate }) => {
         </li>
         <li>
           Maximum of five mistakes are allowed to pass the test. One mistake
-          counts as when one or more statement in one question are incorrect.
+          equals to one or more incorrect statements in a question.
         </li>
         <li>
           After you have completed the test, click on "Finish" to submit the
@@ -28,7 +30,7 @@ const Instructions = ({ onNavigate }) => {
         </li>
         <li>
           The result of whether the test is passed is showed immediately, as
-          well as mistakes.
+          well as mistakes (if any).
         </li>
       </ul>
       <p className="text-md md:text-lg w-full">
