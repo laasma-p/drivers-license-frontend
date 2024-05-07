@@ -1,6 +1,8 @@
 import image from "../assets/view.jpg";
 
-const QuizCard = ({ practiceQuestions }) => {
+const QuizCard = ({ practiceQuestions, currentQuestionIndex }) => {
+  const currentQuestion = practiceQuestions[currentQuestionIndex];
+
   return (
     <div className="w-11/12 mt-3 md:flex max-w-7xl">
       <div className="md:w-1/2">
@@ -9,10 +11,10 @@ const QuizCard = ({ practiceQuestions }) => {
       <form className="md:w-1/2">
         <div className="md:h-4/5">
           <h2 className="text-xl text-gray-950 px-2 pt-1">
-            {practiceQuestions.test_question}
+            {currentQuestion.test_question}
           </h2>
           <p className="text-lg text-gray-950 px-2 pt-1 pb-2">
-            {practiceQuestions.test_question_description}
+            {currentQuestion.test_question_description}
           </p>
           <div className="flex flex-col gap-1">
             <div className="px-1 flex items-center">
@@ -23,7 +25,7 @@ const QuizCard = ({ practiceQuestions }) => {
               />
               <div className="w-fit">
                 <label htmlFor="statement1">
-                  {practiceQuestions.test_statement_1}
+                  {currentQuestion.test_statement_1}
                 </label>
               </div>
             </div>
@@ -35,7 +37,7 @@ const QuizCard = ({ practiceQuestions }) => {
               />
               <div className="w-fit">
                 <label htmlFor="statement2">
-                  {practiceQuestions.test_statement_2}
+                  {currentQuestion.test_statement_2}
                 </label>
               </div>
             </div>
@@ -47,7 +49,7 @@ const QuizCard = ({ practiceQuestions }) => {
               />
               <div className="w-fit">
                 <label htmlFor="statement3">
-                  {practiceQuestions.test_statement_3}
+                  {currentQuestion.test_statement_3}
                 </label>
               </div>
             </div>
