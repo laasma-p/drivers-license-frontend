@@ -1,6 +1,14 @@
 import image from "../assets/view.jpg";
 
 const QuizCard = ({ practiceQuestions, currentQuestionIndex }) => {
+  if (
+    !practiceQuestions ||
+    currentQuestionIndex < 0 ||
+    currentQuestionIndex >= practiceQuestions.length
+  ) {
+    return <p>No questions available.</p>;
+  }
+
   const currentQuestion = practiceQuestions[currentQuestionIndex];
 
   return (
