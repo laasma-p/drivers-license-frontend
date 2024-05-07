@@ -18,11 +18,13 @@ const Instructions = ({ onNavigate }) => {
         <li>
           You have 25 minutes to fill out the test. Each question consists of an
           image about a situation, an explanation of it and several statements
-          to which you need to answer either "Yes" or "No".
+          that you have to check if the step has to be fulfilled in the
+          situation.
         </li>
         <li>
           Maximum of five mistakes are allowed to pass the test. One mistake
-          equals to one or more incorrect statements in a question.
+          equals to one or more incorrect or not marked statements in a
+          question.
         </li>
         <li>
           After you have completed the test, click on "Finish" to submit the
