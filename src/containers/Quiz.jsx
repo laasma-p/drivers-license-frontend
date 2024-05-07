@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 const Quiz = () => {
   const [practiceQuestions, setPracticeQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -29,7 +30,10 @@ const Quiz = () => {
     <>
       <Header />
       <div className="w-full flex justify-center">
-        <QuizCard practiceQuestions={practiceQuestions} />
+        <QuizCard
+          practiceQuestions={practiceQuestions}
+          currentQuestionIndex={currentQuestionIndex}
+        />
       </div>
     </>
   );
