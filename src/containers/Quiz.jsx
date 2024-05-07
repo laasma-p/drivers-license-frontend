@@ -1,10 +1,10 @@
 import QuizCard from "../components/QuizCard";
-import Timer from "../containers/Timer";
+import Header from "./Header";
 
 const Quiz = () => {
   return (
     <>
-      <Timer />
+      <Header />
       <div className="w-full flex justify-center">
         <QuizCard />
       </div>
