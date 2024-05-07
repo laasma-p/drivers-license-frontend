@@ -1,6 +1,10 @@
 import image from "../assets/view.jpg";
 
-const QuizCard = ({ practiceQuestions, currentQuestionIndex }) => {
+const QuizCard = ({
+  practiceQuestions,
+  currentQuestionIndex,
+  onNextQuestion,
+}) => {
   if (
     !practiceQuestions ||
     currentQuestionIndex < 0 ||
@@ -10,6 +14,11 @@ const QuizCard = ({ practiceQuestions, currentQuestionIndex }) => {
   }
 
   const currentQuestion = practiceQuestions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === practiceQuestions.length - 1;
+
+  const nextClickHandler = () => {
+    onNextQuestion();
+  };
 
   return (
     <div className="w-11/12 mt-3 md:flex max-w-7xl">
@@ -64,9 +73,14 @@ const QuizCard = ({ practiceQuestions, currentQuestionIndex }) => {
           </div>
         </div>
         <div className="md:flex md:justify-end md:h-1/5 md:items-end mt-4 md:mt-0">
-          <button className="w-full md:w-1/5 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-all rounded-md">
-            Next
-          </button>
+          {!isLastQuestion && (
+            <button
+              className="w-full md:w-1/5 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-all rounded-md"
+              onClick={nextClickHandler}
+            >
+              Next
+            </button>
+          )}
         </div>
       </form>
     </div>

@@ -26,6 +26,10 @@ const Quiz = () => {
     fetchPracticeQuestions();
   }, []);
 
+  const nextQuestionHandler = () => {
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+  };
+
   return (
     <>
       <Header />
@@ -33,6 +37,7 @@ const Quiz = () => {
         <QuizCard
           practiceQuestions={practiceQuestions}
           currentQuestionIndex={currentQuestionIndex}
+          onNextQuestion={nextQuestionHandler}
         />
       </div>
     </>
