@@ -2,7 +2,7 @@ import image from "../assets/view.jpg";
 
 const QuizCard = () => {
   return (
-    <div className="w-11/12">
+    <div className="w-11/12 mt-3">
       <div>
         <img src={image} alt="image" height="auto" />
       </div>
