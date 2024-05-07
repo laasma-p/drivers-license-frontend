@@ -1,9 +1,5 @@
 const Timer = () => {
-  return (
-    <div className="h-16 bg-gray-500">
-      <p>Timer goes here</p>
-    </div>
-  );
+  return <p className="text-lg">00:00</p>;
 };
 
 export default Timer;
