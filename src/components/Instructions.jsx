@@ -10,9 +10,11 @@ const Instructions = ({ onNavigate }) => {
 
   return (
     <div className="flex flex-col mx-auto px-8 pt-8 sm:pt-20 md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
-      <h1 className="text-xl">Welcome to the theory exam.</h1>
-      <p className="text-lg">The instructions for it are as follows:</p>
-      <ul className="w-full mt-6 mb-4">
+      <h1 className="text-xl text-gray-950">Welcome to the theory exam.</h1>
+      <p className="text-lg text-gray-950">
+        The instructions for it are as follows:
+      </p>
+      <ul className="w-full mt-6 mb-4 text-gray-950">
         <li>
           You have 25 minutes to fill out the test. Each question consists of an
           image about a situation, an explanation of it and several statements
@@ -31,7 +33,7 @@ const Instructions = ({ onNavigate }) => {
           well as mistakes (if any).
         </li>
       </ul>
-      <p className="w-full">
+      <p className="w-full text-gray-950">
         Before the test itself, two test questions will be presented to
         familiarize yourself with the test structure. After clicking on "Start"
         button, the test starts.
