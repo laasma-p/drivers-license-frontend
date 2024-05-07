@@ -31,7 +31,7 @@ const Authorization = ({ onAuthorization }) => {
             Code
           </label>
           <input
-            className="text-gray-950 mb-4 p-2 border border-gray-400 focus:border-2 focus:border-gray-950 outline-0 rounded-md"
+            className="text-lg text-gray-950 mb-4 p-2 border border-gray-400 focus:border-2 focus:border-gray-950 outline-0 rounded-md"
             type="text"
             id="code"
             value={enteredCode}
@@ -39,7 +39,7 @@ const Authorization = ({ onAuthorization }) => {
           />
           <button
             type="submit"
-            className="text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 rounded-md transition-all"
+            className="text-lg text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 rounded-md transition-all"
           >
             Continue
           </button>
