@@ -1,10 +1,13 @@
 import image from "../assets/view.jpg";
+import { useState } from "react";
 
 const QuizCard = ({
   practiceQuestions,
   currentQuestionIndex,
   onNextQuestion,
 }) => {
+  const [selectedStatements, setSelectedStatements] = useState([]);
+
   if (
     !practiceQuestions ||
     currentQuestionIndex < 0 ||
@@ -16,8 +19,22 @@ const QuizCard = ({
   const currentQuestion = practiceQuestions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === practiceQuestions.length - 1;
 
+  const statementSelectionHandler = (statementIndex) => {
+    setSelectedStatements((prevSelectedStatements) => {
+      const newSelectedStatements = [...prevSelectedStatements];
+      const indexToFind = newSelectedStatements.indexOf(statementIndex);
+      if (indexToFind === -1) {
+        newSelectedStatements.push(statementIndex);
+      } else {
+        newSelectedStatements.splice(indexToFind, 1);
+      }
+      return newSelectedStatements;
+    });
+  };
+
   const nextClickHandler = () => {
     onNextQuestion();
+    setSelectedStatements([]);
   };
 
   return (
@@ -34,42 +51,26 @@ const QuizCard = ({
             {currentQuestion.test_question_description}
           </p>
           <div className="flex flex-col gap-1">
-            <div className="px-1 flex items-center">
-              <input
-                type="checkbox"
-                id="statement1"
-                className="w-4 h-4 ml-1 mr-2 cursor-pointer"
-              />
-              <div className="w-fit">
-                <label htmlFor="statement1">
-                  {currentQuestion.test_statement_1}
-                </label>
+            {[1, 2, 3, 4].map((statementIndex) => (
+              <div key={statementIndex} className="px-1 flex items-center">
+                <input
+                  type="checkbox"
+                  id={`statement${currentQuestionIndex + 1}-${statementIndex}`}
+                  className="w-4 h-4 ml-1 mr-2 cursor-pointer"
+                  checked={selectedStatements.includes(statementIndex)}
+                  onChange={() => statementSelectionHandler(statementIndex)}
+                />
+                <div className="w-fit">
+                  <label
+                    htmlFor={`statement${
+                      currentQuestionIndex + 1
+                    }-${statementIndex}`}
+                  >
+                    {currentQuestion[`test_statement_${statementIndex}`]}
+                  </label>
+                </div>
               </div>
-            </div>
-            <div className="px-1 flex items-center">
-              <input
-                type="checkbox"
-                id="statement2"
-                className="w-4 h-4 ml-1 mr-2 cursor-pointer"
-              />
-              <div className="w-fit">
-                <label htmlFor="statement2">
-                  {currentQuestion.test_statement_2}
-                </label>
-              </div>
-            </div>
-            <div className="px-1 flex items-center">
-              <input
-                type="checkbox"
-                id="statement3"
-                className="w-4 h-4 ml-1 mr-2 cursor-pointer"
-              />
-              <div className="w-fit">
-                <label htmlFor="statement3">
-                  {currentQuestion.test_statement_3}
-                </label>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="md:flex md:justify-end md:h-1/5 md:items-end mt-4 md:mt-0">
