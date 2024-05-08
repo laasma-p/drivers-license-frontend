@@ -37,6 +37,11 @@ const QuizCard = ({
     setSelectedStatements([]);
   };
 
+  const statements = Object.keys(currentQuestion)
+    .filter((key) => key.startsWith("test_statement_"))
+    .map((key) => currentQuestion[key])
+    .filter((statement) => statement);
+
   return (
     <div className="w-11/12 mt-3 md:flex max-w-7xl">
       <div className="md:w-1/2">
@@ -51,22 +56,22 @@ const QuizCard = ({
             {currentQuestion.test_question_description}
           </p>
           <div className="flex flex-col gap-1">
-            {[1, 2, 3, 4].map((statementIndex) => (
-              <div key={statementIndex} className="px-1 flex items-center">
+            {statements.map((statement, index) => (
+              <div key={index} className="px-1 flex items-center">
                 <input
                   type="checkbox"
-                  id={`statement${currentQuestionIndex + 1}-${statementIndex}`}
+                  id={`statement${currentQuestionIndex + 1}-${index + 1}`}
                   className="w-4 h-4 ml-1 mr-2 cursor-pointer"
-                  checked={selectedStatements.includes(statementIndex)}
-                  onChange={() => statementSelectionHandler(statementIndex)}
+                  checked={selectedStatements.includes(index + 1)}
+                  onChange={() => statementSelectionHandler(index + 1)}
                 />
                 <div className="w-fit">
                   <label
-                    htmlFor={`statement${
-                      currentQuestionIndex + 1
-                    }-${statementIndex}`}
+                    htmlFor={`statement${currentQuestionIndex + 1}-${
+                      index + 1
+                    }`}
                   >
-                    {currentQuestion[`test_statement_${statementIndex}`]}
+                    {statement}
                   </label>
                 </div>
               </div>
