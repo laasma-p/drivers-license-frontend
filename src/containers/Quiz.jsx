@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 const Quiz = () => {
   const [practiceQuestions, setPracticeQuestions] = useState([]);
+  const [testQuestions, setTestQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   useEffect(() => {
@@ -23,7 +24,22 @@ const Quiz = () => {
       }
     };
 
+    const fetchTestQuestions = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/test-questions");
+        if (response.ok) {
+          const data = await response.json();
+          setTestQuestions(data);
+        } else {
+          console.error("Failed to fetch test questions");
+        }
+      } catch (error) {
+        console.error("Error fetching test questions:", error.message);
+      }
+    };
+
     fetchPracticeQuestions();
+    fetchTestQuestions();
   }, []);
 
   const nextQuestionHandler = () => {
@@ -36,6 +52,7 @@ const Quiz = () => {
       <div className="w-full flex justify-center">
         <QuizCard
           practiceQuestions={practiceQuestions}
+          testQuestions={testQuestions}
           currentQuestionIndex={currentQuestionIndex}
           onNextQuestion={nextQuestionHandler}
         />
