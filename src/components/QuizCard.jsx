@@ -1,4 +1,3 @@
-import image from "../assets/view.jpg";
 import { useState } from "react";
 
 const QuizCard = ({
@@ -45,7 +44,13 @@ const QuizCard = ({
   return (
     <div className="w-11/12 mt-3 md:flex max-w-7xl">
       <div className="md:w-1/2">
-        <img src={image} alt="image" height="auto" />
+        {practiceQuestions[currentQuestionIndex] && (
+          <img
+            src={practiceQuestions[currentQuestionIndex].test_question_img_url}
+            alt="image"
+            height="auto"
+          />
+        )}
       </div>
       <form className="md:w-1/2">
         <div className="md:h-4/5">
