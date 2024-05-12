@@ -84,14 +84,13 @@ const QuizCard = ({
           </div>
         </div>
         <div className="md:flex md:justify-end md:h-1/5 md:items-end mt-4 md:mt-0">
-          {!isLastQuestion && (
-            <button
-              className="w-full md:w-1/5 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-all rounded-md"
-              onClick={nextClickHandler}
-            >
-              Next
-            </button>
-          )}
+          <button
+            type="button"
+            className="w-full md:w-1/5 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-all rounded-md"
+            onClick={nextClickHandler}
+          >
+            {!isLastQuestion ? "Next" : "Start"}
+          </button>
         </div>
       </form>
     </div>
