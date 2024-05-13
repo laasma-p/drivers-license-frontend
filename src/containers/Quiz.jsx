@@ -6,6 +6,7 @@ const Quiz = () => {
   const [practiceQuestions, setPracticeQuestions] = useState([]);
   const [testQuestions, setTestQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [quizStarted, setQuizStarted] = useState(false);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -24,23 +25,24 @@ const Quiz = () => {
       }
     };
 
-    const fetchTestQuestions = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/test-questions");
-        if (response.ok) {
-          const data = await response.json();
-          setTestQuestions(data);
-        } else {
-          console.error("Failed to fetch test questions");
-        }
-      } catch (error) {
-        console.error("Error fetching test questions:", error.message);
-      }
-    };
-
     fetchPracticeQuestions();
-    fetchTestQuestions();
   }, []);
+
+  const startQuizHandler = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/test-questions");
+      if (response.ok) {
+        const data = await response.json();
+        setTestQuestions(data);
+        setCurrentQuestionIndex(0);
+        setQuizStarted(true);
+      } else {
+        console.error("Failed to fetch test questions");
+      }
+    } catch (error) {
+      console.error("Error fetching test questions:", error.message);
+    }
+  };
 
   const nextQuestionHandler = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
@@ -55,6 +57,8 @@ const Quiz = () => {
           testQuestions={testQuestions}
           currentQuestionIndex={currentQuestionIndex}
           onNextQuestion={nextQuestionHandler}
+          quizStarted={quizStarted}
+          onQuizStart={startQuizHandler}
         />
       </div>
     </>
