@@ -20,8 +20,13 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("token", data.token);
-        setIsAuthorized(true);
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          if (data.userId) {
+            localStorage.setItem("test_taker_id", data.userId);
+            setIsAuthorized(true);
+          }
+        }
       }
     } catch (error) {
       console.error("Error verifying code", error.message);
