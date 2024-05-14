@@ -40,7 +40,16 @@ const QuizCard = ({
 
       setSelectedStatements(newSelectedStatements);
 
-      await fetch("http://localhost:3000/mark-practice-results", {
+      let savingMarkResultsEndpoint;
+
+      if (quizStarted) {
+        savingMarkResultsEndpoint = "http://localhost:3000/mark-test-results";
+      } else {
+        savingMarkResultsEndpoint =
+          "http://localhost:3000/mark-practice-results";
+      }
+
+      await fetch(savingMarkResultsEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
