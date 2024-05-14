@@ -23,11 +23,11 @@ const Timer = ({ quizStarted }) => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  return (
-    <p className="text-lg">
-      {`${minutes}:${seconds.toString().padStart(2, "0")}`}
-    </p>
-  );
+  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
+
+  return <p className="text-lg">{formattedTime}</p>;
 };
 
 export default Timer;
