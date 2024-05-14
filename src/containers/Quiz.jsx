@@ -50,7 +50,7 @@ const Quiz = () => {
 
   return (
     <>
-      <Header />
+      <Header quizStarted={quizStarted} />
       <div className="w-full flex justify-center">
         <QuizCard
           practiceQuestions={practiceQuestions}
