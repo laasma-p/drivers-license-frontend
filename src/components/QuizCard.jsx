@@ -23,21 +23,41 @@ const QuizCard = ({
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
-  const statementSelectionHandler = (statementIndex) => {
-    const questionId = currentQuestion.id;
-    const testTakerId = localStorage.getItem("test_taker_id");
-    const token = localStorage.getItem("token");
+  const statementSelectionHandler = async (statementIndex) => {
+    try {
+      const questionId = currentQuestion.id;
+      const testTakerId = localStorage.getItem("test_taker_id");
+      const token = localStorage.getItem("token");
 
-    setSelectedStatements((prevSelectedStatements) => {
-      const newSelectedStatements = [...prevSelectedStatements];
+      const newSelectedStatements = [...selectedStatements];
       const indexToFind = newSelectedStatements.indexOf(statementIndex);
+
       if (indexToFind === -1) {
         newSelectedStatements.push(statementIndex);
       } else {
         newSelectedStatements.splice(indexToFind, 1);
       }
-      return newSelectedStatements;
-    });
+
+      setSelectedStatements(newSelectedStatements);
+
+      await fetch("http://localhost:3000/mark-practice-results", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          test_taker_id: testTakerId,
+          question_id: questionId,
+          user_selected_answers: newSelectedStatements,
+        }),
+      });
+    } catch (error) {
+      console.error(
+        "Error marking the statement for the practice question:",
+        error.message
+      );
+    }
   };
 
   const nextClickHandler = () => {
