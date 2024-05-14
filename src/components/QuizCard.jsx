@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const QuizCard = ({
   practiceQuestions,
@@ -10,6 +10,10 @@ const QuizCard = ({
   onFinishQuiz,
 }) => {
   const [selectedStatements, setSelectedStatements] = useState([]);
+
+  useEffect(() => {
+    setSelectedStatements([]);
+  }, [currentQuestionIndex]);
 
   const questions = quizStarted ? testQuestions : practiceQuestions;
 
@@ -76,7 +80,6 @@ const QuizCard = ({
     } else {
       onNextQuestion();
     }
-    setSelectedStatements([]);
   };
 
   const statements = currentQuestion
