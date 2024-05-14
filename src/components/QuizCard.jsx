@@ -24,6 +24,10 @@ const QuizCard = ({
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
   const statementSelectionHandler = (statementIndex) => {
+    const questionId = currentQuestion.id;
+    const testTakerId = localStorage.getItem("test_taker_id");
+    const token = localStorage.getItem("token");
+
     setSelectedStatements((prevSelectedStatements) => {
       const newSelectedStatements = [...prevSelectedStatements];
       const indexToFind = newSelectedStatements.indexOf(statementIndex);
