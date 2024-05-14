@@ -1,7 +1,7 @@
 import logo from "../assets/logo.png";
 import Timer from "./Timer";
 
-const Header = ({ quizStarted }) => {
+const Header = ({ quizStarted, quizFinished }) => {
   return (
     <header className="bg-sky-400 py-2">
       <div className="flex mx-3 md:w-11/12 md:mx-auto">

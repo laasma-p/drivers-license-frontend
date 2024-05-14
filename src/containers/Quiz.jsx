@@ -9,6 +9,7 @@ const Quiz = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizStarted, setQuizStarted] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [quizFinished, setQuizFinished] = useState(false);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -52,11 +53,12 @@ const Quiz = () => {
 
   const finishQuizHandler = () => {
     setShowResults(true);
+    setQuizFinished(true);
   };
 
   return (
     <>
-      <Header quizStarted={quizStarted} />
+      <Header quizStarted={quizStarted} quizFinished={quizFinished} />
       {showResults ? (
         <Results />
       ) : (
