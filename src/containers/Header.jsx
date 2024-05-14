@@ -9,7 +9,7 @@ const Header = ({ quizStarted, quizFinished }) => {
           <img src={logo} alt="logo" />
         </div>
         <div className="w-3/6 md:w-5/6 flex items-center justify-end">
-          <Timer quizStarted={quizStarted} />
+          <Timer quizStarted={quizStarted} quizFinished={quizFinished} />
         </div>
       </div>
     </header>
