@@ -1,5 +1,6 @@
 import QuizCard from "../components/QuizCard";
 import Header from "./Header";
+import Results from "./Results";
 import { useState, useEffect } from "react";
 
 const Quiz = () => {
@@ -7,6 +8,7 @@ const Quiz = () => {
   const [testQuestions, setTestQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -48,19 +50,28 @@ const Quiz = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
+  const finishQuizHandler = () => {
+    setShowResults(true);
+  };
+
   return (
     <>
       <Header quizStarted={quizStarted} />
-      <div className="w-full flex justify-center">
-        <QuizCard
-          practiceQuestions={practiceQuestions}
-          testQuestions={testQuestions}
-          currentQuestionIndex={currentQuestionIndex}
-          onNextQuestion={nextQuestionHandler}
-          quizStarted={quizStarted}
-          onQuizStart={startQuizHandler}
-        />
-      </div>
+      {showResults ? (
+        <Results />
+      ) : (
+        <div className="w-full flex justify-center">
+          <QuizCard
+            practiceQuestions={practiceQuestions}
+            testQuestions={testQuestions}
+            currentQuestionIndex={currentQuestionIndex}
+            onNextQuestion={nextQuestionHandler}
+            quizStarted={quizStarted}
+            onQuizStart={startQuizHandler}
+            onFinishQuiz={finishQuizHandler}
+          />
+        </div>
+      )}
     </>
   );
 };

@@ -7,6 +7,7 @@ const QuizCard = ({
   testQuestions,
   onQuizStart,
   quizStarted,
+  onFinishQuiz,
 }) => {
   const [selectedStatements, setSelectedStatements] = useState([]);
 
@@ -70,7 +71,11 @@ const QuizCard = ({
   };
 
   const nextClickHandler = () => {
-    onNextQuestion();
+    if (isLastQuestion && quizStarted) {
+      onFinishQuiz();
+    } else {
+      onNextQuestion();
+    }
     setSelectedStatements([]);
   };
 
