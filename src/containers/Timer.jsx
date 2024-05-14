@@ -1,22 +1,24 @@
 import { useState, useEffect } from "react";
 
-const Timer = () => {
+const Timer = ({ quizStarted }) => {
   const [time, setTime] = useState(25 * 60);
 
   useEffect(() => {
     let timer;
-    timer = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime <= 0) {
-          clearInterval(timer);
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
+    if (quizStarted) {
+      timer = setInterval(() => {
+        setTime((prevTime) => {
+          if (prevTime <= 0) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    }
 
     return () => clearInterval(timer);
-  }, []);
+  }, [quizStarted]);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
