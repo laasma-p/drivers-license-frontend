@@ -1,8 +1,8 @@
-const Results = () => {
+const Results = ({ correctQuestions, totalQuestions }) => {
   return (
     <div className="flex flex-col mx-auto px-8 pt-8 sm:pt-20 md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
       <h1 className="text-xl text-gray-950">
-        You have correctly answered 23 out of 25 questions.
+        You have correctly answered {correctQuestions} out of {totalQuestions};
       </h1>
       <p className="w-full mt-6 mb-4 text-gray-950">
         You have passed the test.

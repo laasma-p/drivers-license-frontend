@@ -10,6 +10,8 @@ const Quiz = () => {
   const [quizStarted, setQuizStarted] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
+  const [correctQuestions, setCorrectQuestions] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -51,16 +53,38 @@ const Quiz = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
-  const finishQuizHandler = () => {
+  const finishQuizHandler = async () => {
     setShowResults(true);
     setQuizFinished(true);
+
+    try {
+      const testTakerId = localStorage.getItem("test_taker_id");
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:3000/results/${testTakerId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setCorrectQuestions(data.correctQuestions);
+        setTotalQuestions(data.totalQuestions);
+      } else {
+        console.error("Failed to fetch the results");
+      }
+    } catch (error) {
+      console.error("Error fetching the results:", error.message);
+    }
   };
 
   return (
     <>
       <Header quizStarted={quizStarted} quizFinished={quizFinished} />
       {showResults ? (
-        <Results />
+        <Results
+          correctQuestions={correctQuestions}
+          totalQuestions={totalQuestions}
+        />
       ) : (
         <div className="w-full flex justify-center">
           <QuizCard
