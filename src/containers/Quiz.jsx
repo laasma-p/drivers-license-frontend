@@ -12,6 +12,7 @@ const Quiz = () => {
   const [quizFinished, setQuizFinished] = useState(false);
   const [correctQuestions, setCorrectQuestions] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [hasPassed, setHasPassed] = useState(false);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -62,13 +63,18 @@ const Quiz = () => {
       const token = localStorage.getItem("token");
       const response = await fetch(
         `http://localhost:3000/results/${testTakerId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.ok) {
         const data = await response.json();
         setCorrectQuestions(data.correctQuestions);
         setTotalQuestions(data.totalQuestions);
+        setHasPassed(data.hasPassed);
       } else {
         console.error("Failed to fetch the results");
       }
@@ -84,6 +90,7 @@ const Quiz = () => {
         <Results
           correctQuestions={correctQuestions}
           totalQuestions={totalQuestions}
+          hasPassed={hasPassed}
         />
       ) : (
         <div className="w-full flex justify-center">
