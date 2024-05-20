@@ -18,7 +18,7 @@ const Authorization = ({ onAuthorization }) => {
   };
 
   return (
-    <div className="w-full font-sans">
+    <div className="container mx-auto font-sans">
       <p className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center">
         Enter the code you have received from the examiner
       </p>
@@ -31,7 +31,7 @@ const Authorization = ({ onAuthorization }) => {
             Code
           </label>
           <input
-            className="text-lg text-gray-950 mb-4 p-2 border border-gray-400 focus:border-2 focus:border-gray-950 outline-0 rounded-md"
+            className="text-lg text-gray-950 mb-4 p-2 border border-gray-400 focus:outline-none appearance-none rounded-md focus:border-sky-400"
             type="text"
             id="code"
             value={enteredCode}
