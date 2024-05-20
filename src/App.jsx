@@ -38,7 +38,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-dvh bg-gray-100">
+    <div className="w-full min-h-dvh bg-gray-100">
       {!isAuthorized && (
         <Authorization onAuthorization={authorizationHandler} />
       )}
