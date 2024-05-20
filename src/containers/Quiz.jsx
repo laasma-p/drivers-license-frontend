@@ -87,7 +87,12 @@ const Quiz = () => {
 
   return (
     <>
-      <Header quizStarted={quizStarted} quizFinished={quizFinished} />
+      <Header
+        quizStarted={quizStarted}
+        quizFinished={quizFinished}
+        currentQuestionIndex={currentQuestionIndex}
+        totalQuestions={testQuestions.length}
+      />
       {showResults ? (
         <Results
           correctQuestions={correctQuestions}
