@@ -13,6 +13,7 @@ const Quiz = () => {
   const [correctQuestions, setCorrectQuestions] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [hasPassed, setHasPassed] = useState(false);
+  const [incorrectQuestions, setIncorrectQuestions] = useState([]);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -75,6 +76,7 @@ const Quiz = () => {
         setCorrectQuestions(data.correctQuestions);
         setTotalQuestions(data.totalQuestions);
         setHasPassed(data.hasPassed);
+        setIncorrectQuestions(data.incorrectQuestions);
       } else {
         console.error("Failed to fetch the results");
       }
@@ -91,6 +93,7 @@ const Quiz = () => {
           correctQuestions={correctQuestions}
           totalQuestions={totalQuestions}
           hasPassed={hasPassed}
+          incorrectQuestions={incorrectQuestions}
         />
       ) : (
         <div className="w-full flex justify-center">
