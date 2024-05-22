@@ -8,7 +8,7 @@ const Header = ({
   totalQuestions,
 }) => {
   return (
-    <header className="w-full bg-sky-400 py-2">
+    <header className="w-full h-16 bg-sky-400 py-2 flex justify-center">
       <div className="flex w-11/12 items-center justify-center mx-auto">
         <div className="w-3/6 flex items-center justify-start">
           <img src={logo} alt="logo" className="w-10 h-10" />
