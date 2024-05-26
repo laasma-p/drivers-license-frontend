@@ -147,7 +147,7 @@ const QuizCard = ({
             ))}
           </div>
         </div>
-        <div className="md:flex md:justify-end md:items-end mt-4 md:mt-0">
+        <div className="md:flex md:justify-end md:items-end md:mt-0">
           {!isLastQuestion && (
             <button
               type="button"
