@@ -1,10 +1,5 @@
-import { useState } from "react";
-
 const Instructions = ({ onNavigate }) => {
-  const [continueClick, setContinueClick] = useState(false);
-
   const navigateToNextHandler = () => {
-    setContinueClick(true);
     onNavigate();
   };
 
