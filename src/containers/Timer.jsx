@@ -28,7 +28,7 @@ const Timer = ({ quizStarted, quizFinished }) => {
     .padStart(2, "0")}`;
 
   return (
-    <p className="text-lg">
+    <p className="text-gray-950 text-sm md:text-lg">
       {quizFinished && "Time remaining:"} {formattedTime}
     </p>
   );
