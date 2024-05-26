@@ -8,17 +8,17 @@ const Header = ({
   totalQuestions,
 }) => {
   return (
-    <header className="w-full h-16 bg-sky-400 py-2 flex justify-center">
-      <div className="flex w-11/12 items-center justify-center mx-auto">
-        <div className="w-3/6 flex items-center justify-start">
-          <img src={logo} alt="logo" className="w-10 h-10" />
-        </div>
-        <div className="w-3/6 flex items-center justify-end">
+    <header className="w-full bg-sky-400 py-2 flex justify-center md:py-4">
+      <div className="w-11/12 max-w-7xl flex items-center justify-between">
+        <div className="flex items-center">
+          <img src={logo} alt="logo" className="w-10 h-10 md:w-12 md:h-12" />
           {quizStarted && (
-            <span className="text-gray-950 text-lg px-4">
-              Question {currentQuestionIndex + 1} out of {totalQuestions}
+            <span className="ml-2 md:ml-4 text-gray-950 text-sm md:text-lg">
+              Question {currentQuestionIndex + 1} / {totalQuestions}
             </span>
           )}
+        </div>
+        <div className="flex items-center">
           <Timer quizStarted={quizStarted} quizFinished={quizFinished} />
         </div>
       </div>
