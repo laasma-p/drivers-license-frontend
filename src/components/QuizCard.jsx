@@ -96,8 +96,8 @@ const QuizCard = ({
     : [];
 
   return (
-    <div className="w-11/12 mt-3 md:flex max-w-7xl">
-      <div className="md:w-1/2">
+    <div className="w-11/12 mt-3 mb-4 md:flex max-w-7xl">
+      <div className="md:w-1/2 p-2">
         <img
           src={
             quizStarted
@@ -105,35 +105,35 @@ const QuizCard = ({
               : currentQuestion.test_question_img_url
           }
           alt="image"
-          height="auto"
+          className="w-full h-auto border border-gray-300 rounded-md"
         />
       </div>
-      <form className="md:w-1/2">
+      <form className="md:w-1/2 p-2 flex flex-col justify-between">
         <div className="md:h-4/5">
-          <h2 className="text-xl text-gray-950 px-2 pt-1">
+          <h2 className="text-2xl text-gray-950 font-semibold mb-2">
             {quizStarted
               ? currentQuestion.question
               : currentQuestion.test_question}
           </h2>
-          <p className="text-lg text-gray-950 px-2 pt-1 pb-2">
+          <p className="text-lg text-gray-950 mb-4">
             {quizStarted ? "" : currentQuestion.test_question_description}
           </p>
           <div className="flex flex-col gap-2">
             {statements.map((statement, index) => (
               <div
                 key={index}
-                className={`px-1 py-3 flex items-center rounded-md transition-colors duration-300 ${
+                className={`px-3 py-2 border border-gray-300 rounded-md flex items-center transition-colors duration-300 ${
                   selectedStatements.includes(index + 1) ? "bg-gray-200" : ""
                 }`}
               >
                 <input
                   type="checkbox"
                   id={`statement${currentQuestionIndex + 1}-${index + 1}`}
-                  className="w-4 h-4 ml-1 mr-2 cursor-pointer"
+                  className="w-4 h-4 ml-1 mr-3 cursor-pointer"
                   checked={selectedStatements.includes(index + 1)}
                   onChange={() => statementSelectionHandler(index + 1)}
                 />
-                <div className="w-fit">
+                <div className="w-full">
                   <label
                     htmlFor={`statement${currentQuestionIndex + 1}-${
                       index + 1
@@ -147,11 +147,11 @@ const QuizCard = ({
             ))}
           </div>
         </div>
-        <div className="md:flex md:justify-end md:h-1/5 md:items-end mt-4 md:mt-0">
+        <div className="md:flex md:justify-end md:items-end mt-4 md:mt-0">
           {!isLastQuestion && (
             <button
               type="button"
-              className={`w-full md:w-1/5 text-gray-100 py-2 transition-all rounded-md ${
+              className={`w-full lg:w-1/3 text-gray-100 py-2 mt-4 transition-all rounded-md ${
                 isStatementSelected
                   ? "bg-sky-400 hover:bg-sky-700 cursor-pointer"
                   : "bg-gray-300 cursor-not-allowed"
@@ -165,7 +165,7 @@ const QuizCard = ({
           {isLastQuestion && (
             <button
               type="button"
-              className={`w-full md:w-1/5 text-gray-100 py-2 transition-all rounded-md ${
+              className={`w-full lg:w-1/3 text-gray-100 py-2 mt-4 transition-all rounded-md ${
                 isStatementSelected
                   ? "bg-sky-400 hover:bg-sky-700 cursor-pointer"
                   : "bg-gray-300 cursor-not-allowed"
