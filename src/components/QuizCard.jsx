@@ -10,9 +10,11 @@ const QuizCard = ({
   onFinishQuiz,
 }) => {
   const [selectedStatements, setSelectedStatements] = useState([]);
+  const [isStatementSelected, setIsStatementSelected] = useState(false);
 
   useEffect(() => {
     setSelectedStatements([]);
+    setIsStatementSelected(false);
   }, [currentQuestionIndex]);
 
   const questions = quizStarted ? testQuestions : practiceQuestions;
@@ -44,6 +46,7 @@ const QuizCard = ({
       }
 
       setSelectedStatements(newSelectedStatements);
+      setIsStatementSelected(newSelectedStatements.length > 0);
 
       let savingMarkResultsEndpoint;
 
@@ -148,8 +151,13 @@ const QuizCard = ({
           {!isLastQuestion && (
             <button
               type="button"
-              className="w-full md:w-1/5 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-all rounded-md"
+              className={`w-full md:w-1/5 text-gray-100 py-2 transition-all rounded-md ${
+                isStatementSelected
+                  ? "bg-sky-400 hover:bg-sky-700 cursor-pointer"
+                  : "bg-gray-300 cursor-not-allowed"
+              }`}
               onClick={nextClickHandler}
+              disabled={!isStatementSelected}
             >
               Next
             </button>
@@ -157,8 +165,13 @@ const QuizCard = ({
           {isLastQuestion && (
             <button
               type="button"
-              className="w-full md:w-1/5 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-all rounded-md"
+              className={`w-full md:w-1/5 text-gray-100 py-2 transition-all rounded-md ${
+                isStatementSelected
+                  ? "bg-sky-400 hover:bg-sky-700 cursor-pointer"
+                  : "bg-gray-300 cursor-not-allowed"
+              }`}
               onClick={quizStarted ? nextClickHandler : onQuizStart}
+              disabled={!isStatementSelected}
             >
               {quizStarted ? "Finish" : "Start"}
             </button>
