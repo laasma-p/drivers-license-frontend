@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Instructions = ({ onNavigate }) => {
   const navigateToNextHandler = () => {
     onNavigate();
@@ -45,6 +47,10 @@ const Instructions = ({ onNavigate }) => {
       </div>
     </div>
   );
+};
+
+Instructions.propTypes = {
+  onNavigate: PropTypes.func.isRequired,
 };
 
 export default Instructions;

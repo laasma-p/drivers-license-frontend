@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const Authorization = ({ onAuthorization }) => {
   const [enteredCode, setEnteredCode] = useState("");
@@ -47,6 +48,10 @@ const Authorization = ({ onAuthorization }) => {
       </div>
     </div>
   );
+};
+
+Authorization.propTypes = {
+  onAuthorization: PropTypes.func.isRequired,
 };
 
 export default Authorization;

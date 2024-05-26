@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
 import Timer from "./Timer";
+import PropTypes from "prop-types";
 
 const Header = ({
   quizStarted,
@@ -24,6 +25,13 @@ const Header = ({
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  quizStarted: PropTypes.bool.isRequired,
+  quizFinished: PropTypes.bool.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired,
+  totalQuestions: PropTypes.number.isRequired,
 };
 
 export default Header;

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Results = ({ correctQuestions, totalQuestions, hasPassed }) => {
   return (
     <div className="flex flex-col mx-auto px-8 pt-8 sm:pt-20 md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
@@ -12,6 +14,12 @@ const Results = ({ correctQuestions, totalQuestions, hasPassed }) => {
       </p>
     </div>
   );
+};
+
+Results.propTypes = {
+  correctQuestions: PropTypes.number.isRequired,
+  totalQuestions: PropTypes.number.isRequired,
+  hasPassed: PropTypes.bool.isRequired,
 };
 
 export default Results;

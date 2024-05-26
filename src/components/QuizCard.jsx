@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const QuizCard = ({
   practiceQuestions,
@@ -180,6 +181,16 @@ const QuizCard = ({
       </form>
     </div>
   );
+};
+
+QuizCard.propTypes = {
+  practiceQuestions: PropTypes.array.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired,
+  onNextQuestion: PropTypes.func.isRequired,
+  testQuestions: PropTypes.array.isRequired,
+  onQuizStart: PropTypes.func.isRequired,
+  quizStarted: PropTypes.bool.isRequired,
+  onFinishQuiz: PropTypes.func.isRequired,
 };
 
 export default QuizCard;

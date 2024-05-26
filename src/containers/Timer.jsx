@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const Timer = ({ quizStarted, quizFinished }) => {
   const [time, setTime] = useState(25 * 60);
@@ -32,6 +33,11 @@ const Timer = ({ quizStarted, quizFinished }) => {
       {quizFinished && "Time remaining:"} {formattedTime}
     </p>
   );
+};
+
+Timer.propTypes = {
+  quizStarted: PropTypes.bool.isRequired,
+  quizFinished: PropTypes.bool.isRequired,
 };
 
 export default Timer;
