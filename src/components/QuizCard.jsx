@@ -115,9 +115,14 @@ const QuizCard = ({
           <p className="text-lg text-gray-950 px-2 pt-1 pb-2">
             {quizStarted ? "" : currentQuestion.test_question_description}
           </p>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             {statements.map((statement, index) => (
-              <div key={index} className="px-1 flex items-center">
+              <div
+                key={index}
+                className={`px-1 py-3 flex items-center rounded-md transition-colors duration-300 ${
+                  selectedStatements.includes(index + 1) ? "bg-gray-200" : ""
+                }`}
+              >
                 <input
                   type="checkbox"
                   id={`statement${currentQuestionIndex + 1}-${index + 1}`}
@@ -130,6 +135,7 @@ const QuizCard = ({
                     htmlFor={`statement${currentQuestionIndex + 1}-${
                       index + 1
                     }`}
+                    className="cursor-pointer"
                   >
                     {statement}
                   </label>
