@@ -1,4 +1,4 @@
-describe("Quiz", () => {
+describe("QuizCard", () => {
   it("has to render authorization and instructions before rendering Quiz", () => {
     cy.visit("/");
     cy.intercept("POST", "http://localhost:3000/verify-code", {
