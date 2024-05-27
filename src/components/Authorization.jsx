@@ -12,8 +12,16 @@ const Authorization = ({ onAuthorization }) => {
   const authorizeCodeHandler = async (event) => {
     event.preventDefault();
 
+    const codeFormat = /^[a-zA-Z0-9]{6}$/;
+
     if (!enteredCode.trim()) {
       setError("Please enter the code.");
+      return;
+    }
+
+    if (!codeFormat.test(enteredCode)) {
+      setError("Invalid code format.");
+      return;
     }
 
     try {
