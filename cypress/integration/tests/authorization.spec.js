@@ -23,4 +23,9 @@ describe("Authorization", () => {
       expect(req.body).to.have.property("code", code);
     }).as("verifyCode");
   });
+
+  it("has to display an error message for an empty code on submitting the form", () => {
+    cy.contains("button", "Continue").click();
+    cy.contains("Please enter the code.").should("exist");
+  });
 });
