@@ -30,5 +30,6 @@ describe("Instructions", () => {
     ).should("exist");
 
     cy.contains("button", "Continue").should("exist");
+    cy.contains("button", "Continue").click();
   });
 });
