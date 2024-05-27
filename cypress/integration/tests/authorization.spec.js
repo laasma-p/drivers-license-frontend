@@ -28,4 +28,11 @@ describe("Authorization", () => {
     cy.contains("button", "Continue").click();
     cy.contains("Please enter the code.").should("exist");
   });
+
+  it("has to display an error message for invalid code format on submitting the form", () => {
+    const invalidCode = "invalid";
+    cy.get("input#code").type(invalidCode);
+    cy.contains("button", "Continue").click();
+    cy.contains("Invalid code format.").should("exist");
+  });
 });
