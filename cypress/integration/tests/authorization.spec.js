@@ -13,4 +13,14 @@ describe("Authorization", () => {
     cy.get("input#code").type(code);
     cy.get("input#code").should("have.value", code);
   });
+
+  it("has to call onAuthorization prop with entered code when the form is submitted", () => {
+    const code = "2draB4";
+    cy.get("input#code").type(code);
+    cy.contains("button", "Continue").click();
+
+    cy.intercept("POST", "/verify-code", (req) => {
+      expect(req.body).to.have.property("code", code);
+    }).as("verifyCode");
+  });
 });
