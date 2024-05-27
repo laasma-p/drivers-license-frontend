@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const Authorization = ({ onAuthorization }) => {
+const Authorization = ({ onAuthorization, errorMessage }) => {
   const [enteredCode, setEnteredCode] = useState("");
   const [error, setError] = useState("");
 
@@ -42,6 +42,7 @@ const Authorization = ({ onAuthorization }) => {
           className="w-5/6 flex flex-col max-w-md pb-6"
         >
           <p className="text-red-400 text-lg">{error}</p>
+          <p className="text-red-400 text-lg">{errorMessage}</p>
           <label
             htmlFor="code"
             className="text-gray-950 pb-1 text-lg font-semibold"
@@ -69,6 +70,7 @@ const Authorization = ({ onAuthorization }) => {
 
 Authorization.propTypes = {
   onAuthorization: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default Authorization;

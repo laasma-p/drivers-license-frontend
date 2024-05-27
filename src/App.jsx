@@ -7,6 +7,7 @@ import { useState } from "react";
 function App() {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [displayQuiz, setDisplayQuiz] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const authorizationHandler = async (enteredCode) => {
     try {
@@ -27,9 +28,13 @@ function App() {
             setIsAuthorized(true);
           }
         }
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error);
       }
     } catch (error) {
       console.error("Error verifying code", error.message);
+      setErrorMessage("Cannot verify the code.");
     }
   };
 
@@ -40,7 +45,10 @@ function App() {
   return (
     <div className="w-full min-h-dvh bg-gray-100">
       {!isAuthorized && (
-        <Authorization onAuthorization={authorizationHandler} />
+        <Authorization
+          onAuthorization={authorizationHandler}
+          errorMessage={errorMessage}
+        />
       )}
       {isAuthorized && !displayQuiz && (
         <>
