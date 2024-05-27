@@ -35,4 +35,15 @@ describe("Authorization", () => {
     cy.contains("button", "Continue").click();
     cy.contains("Invalid code format.").should("exist");
   });
+
+  it("has to display an error message if API request fails", () => {
+    cy.intercept("POST", "http://localhost:3000/verify-code", {
+      statusCode: 500,
+      body: { error: "API request failed" },
+    }).as("verifyCode");
+
+    const code = "deMB24";
+    cy.get("input#code").type(code);
+    cy.contains("button", "Continue").click();
+  });
 });
