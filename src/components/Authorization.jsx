@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const Authorization = ({ onAuthorization }) => {
   const [enteredCode, setEnteredCode] = useState("");
+  const [error, setError] = useState("");
 
   const enteredCodeHandler = (event) => {
     setEnteredCode(event.target.value);
@@ -10,6 +11,10 @@ const Authorization = ({ onAuthorization }) => {
 
   const authorizeCodeHandler = async (event) => {
     event.preventDefault();
+
+    if (!enteredCode.trim()) {
+      setError("Please enter the code.");
+    }
 
     try {
       await onAuthorization(enteredCode);
@@ -21,14 +26,18 @@ const Authorization = ({ onAuthorization }) => {
   return (
     <div className="container mx-auto font-sans">
       <p className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center">
-        Enter the code you have received from the examiner
+        Enter the code you have received from the examiner:
       </p>
       <div className="flex justify-center">
         <form
           onSubmit={authorizeCodeHandler}
           className="w-5/6 flex flex-col max-w-md pb-6"
         >
-          <label htmlFor="code" className="text-gray-950 pb-1 text-lg">
+          <p className="text-red-400 text-lg">{error}</p>
+          <label
+            htmlFor="code"
+            className="text-gray-950 pb-1 text-lg font-semibold"
+          >
             Code
           </label>
           <input
