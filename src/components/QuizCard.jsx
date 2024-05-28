@@ -22,10 +22,17 @@ const QuizCard = ({
 
   if (
     !questions ||
+    questions.length === 0 ||
     currentQuestionIndex < 0 ||
     currentQuestionIndex >= questions.length
   ) {
-    return <p>No questions available.</p>;
+    return (
+      <p data-testid="no-questions-message">
+        {quizStarted
+          ? "No test questions available."
+          : "No practice questions available."}
+      </p>
+    );
   }
 
   const currentQuestion = questions[currentQuestionIndex];
