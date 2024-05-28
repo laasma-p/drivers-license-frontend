@@ -15,7 +15,7 @@ describe("QuizCard", () => {
     cy.contains("button", "Continue").click();
   });
 
-  it("has to navigate through practice questions", () => {
+  it("has to navigate through practice questions, actual test questions and render Results component", () => {
     cy.get("[data-testid='quiz-card']").should("exist");
     cy.get("input[type='checkbox']").first().check();
     cy.contains("button", "Next").should("be.enabled").click();
@@ -23,5 +23,17 @@ describe("QuizCard", () => {
     cy.get("[data-testid='quiz-card']").should("exist");
     cy.get("input[type='checkbox']").first().check();
     cy.contains("button", "Start").should("be.enabled").click();
+
+    for (let i = 0; i < 24; i++) {
+      cy.get("[data-testid='quiz-card']").should("exist");
+      cy.get("input[type='checkbox']").first().check();
+      cy.contains("button", "Next").should("be.enabled").click();
+    }
+
+    cy.get("[data-testid='quiz-card']").should("exist");
+    cy.get("input[type='checkbox']").first().check();
+    cy.contains("button", "Finish").should("be.enabled").click();
+
+    cy.get("[data-testid='results']").should("exist");
   });
 });
