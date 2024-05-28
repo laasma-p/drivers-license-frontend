@@ -97,7 +97,10 @@ const QuizCard = ({
     : [];
 
   return (
-    <div className="w-11/12 mt-3 mb-4 md:flex max-w-7xl">
+    <div
+      data-testid="quiz-card"
+      className="w-11/12 mt-3 mb-4 md:flex max-w-7xl"
+    >
       <div className="md:w-1/2 p-2">
         <img
           src={

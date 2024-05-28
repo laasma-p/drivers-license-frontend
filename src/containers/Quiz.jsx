@@ -86,7 +86,7 @@ const Quiz = () => {
   };
 
   return (
-    <>
+    <div data-testid="quiz">
       <Header
         quizStarted={quizStarted}
         quizFinished={quizFinished}
@@ -113,7 +113,7 @@ const Quiz = () => {
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

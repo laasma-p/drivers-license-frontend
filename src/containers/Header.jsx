@@ -9,7 +9,10 @@ const Header = ({
   totalQuestions,
 }) => {
   return (
-    <header className="w-full bg-sky-400 py-2 flex justify-center md:py-4">
+    <header
+      data-testid="header"
+      className="w-full bg-sky-400 py-2 flex justify-center md:py-4"
+    >
       <div className="w-11/12 max-w-7xl flex items-center justify-between">
         <div className="flex items-center">
           <img src={logo} alt="logo" className="w-10 h-10 md:w-12 md:h-12" />
