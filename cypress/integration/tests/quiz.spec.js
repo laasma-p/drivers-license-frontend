@@ -15,9 +15,30 @@ describe("Quiz", () => {
     cy.contains("button", "Continue").click();
   });
 
-  it("has to render Quiz and it's sub-components", () => {
+  it("has to render Quiz and its sub-components", () => {
     cy.get("[data-testid='quiz']").should("exist");
     cy.get("[data-testid='quiz-card']").should("exist");
     cy.get("[data-testid='header']").should("exist");
+  });
+
+  it("has to display a message when there are no practice questions", () => {
+    cy.intercept("GET", "http://localhost:3000/practice-questions", {
+      statusCode: 200,
+      body: [],
+    }).as("getPracticeQuestions");
+
+    cy.visit("/");
+    cy.get("input#code").type("35jrwj");
+    cy.contains("button", "Continue").click();
+    cy.wait("@verifyCode");
+
+    cy.contains("Welcome to the theory exam.").should("exist");
+    cy.contains("button", "Continue").click();
+
+    cy.wait("@getPracticeQuestions");
+
+    cy.get("[data-testid='no-questions-message']")
+      .should("exist")
+      .and("contain", "No practice questions available.");
   });
 });
