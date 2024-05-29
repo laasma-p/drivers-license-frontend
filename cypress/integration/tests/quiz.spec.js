@@ -41,4 +41,32 @@ describe("Quiz", () => {
       .should("exist")
       .and("contain", "No practice questions available.");
   });
+
+  it("has to display a message when there are no actual test questions after answering practice questions", () => {
+    cy.intercept("GET", "http://localhost:3000/test-questions", {
+      statusCode: 200,
+      body: [],
+    }).as("getTestQuestions");
+
+    cy.visit("/");
+    cy.get("input#code").type("35jrwj");
+    cy.contains("button", "Continue").click();
+    cy.wait("@verifyCode");
+
+    cy.contains("Welcome to the theory exam.").should("exist");
+    cy.contains("button", "Continue").click();
+
+    cy.get("[data-testid='quiz-card']").should("exist");
+    cy.get("input[type='checkbox']").first().check();
+    cy.contains("button", "Next").should("be.enabled").click();
+
+    cy.get("[data-testid='quiz-card']").should("exist");
+    cy.get("input[type='checkbox']").first().check();
+    cy.contains("button", "Start").should("be.enabled").click();
+
+    cy.wait("@getTestQuestions");
+    cy.get("[data-testid='no-questions-message']")
+      .should("exist")
+      .and("contain", "No test questions available.");
+  });
 });
