@@ -37,8 +37,8 @@ describe("Header", () => {
 
     cy.wait("@getPracticeQuestions");
 
-    cy.get("[data-testid=timer]").should("exist");
-    cy.get("[data-testid=timer]").should("contain", "25:00");
+    cy.get("[data-testid='timer']").should("exist");
+    cy.get("[data-testid='timer']").should("contain", "25:00");
   });
 
   it("has to not start the timer and the quiz if there are no actual test questions", () => {
@@ -71,5 +71,32 @@ describe("Header", () => {
 
     cy.get("[data-testid='timer']").should("exist");
     cy.get("[data-testid='timer']").should("contain", "25:00");
+  });
+
+  it("has to start the timer and the quiz when there are actual test questions", () => {
+    cy.visit("/");
+    cy.get("input#code").type("2draB4");
+    cy.contains("button", "Continue").click();
+
+    cy.wait("@verifyCode");
+
+    cy.contains("Welcome to the theory exam.").should("exist");
+    cy.contains("button", "Continue").click();
+
+    cy.intercept("GET", "http://localhost:3000/test-questions", {
+      statusCode: 200,
+      body: [],
+    }).as("getTestQuestions");
+
+    cy.get("[data-testid='quiz-card']").should("exist");
+    cy.get("input[type='checkbox']").first().check();
+    cy.contains("button", "Next").should("be.enabled").click();
+
+    cy.get("[data-testid='quiz-card']").should("exist");
+    cy.get("input[type='checkbox']").first().check();
+    cy.contains("button", "Start").should("be.enabled").click();
+
+    cy.get("[data-testid='timer']").should("exist");
+    cy.get("[data-testid='timer']").should("contain", "24:59");
   });
 });
