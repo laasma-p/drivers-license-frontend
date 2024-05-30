@@ -7,6 +7,7 @@ const Header = ({
   quizFinished,
   currentQuestionIndex,
   totalQuestions,
+  hasTestQuestions,
 }) => {
   return (
     <header
@@ -23,7 +24,11 @@ const Header = ({
           )}
         </div>
         <div className="flex items-center">
-          <Timer quizStarted={quizStarted} quizFinished={quizFinished} />
+          <Timer
+            quizStarted={quizStarted}
+            quizFinished={quizFinished}
+            hasTestQuestions={hasTestQuestions}
+          />
         </div>
       </div>
     </header>
@@ -35,6 +40,7 @@ Header.propTypes = {
   quizFinished: PropTypes.bool.isRequired,
   currentQuestionIndex: PropTypes.number.isRequired,
   totalQuestions: PropTypes.number.isRequired,
+  hasTestQuestions: PropTypes.bool.isRequired,
 };
 
 export default Header;

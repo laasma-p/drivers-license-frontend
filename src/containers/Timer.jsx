@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Timer = ({ quizStarted, quizFinished }) => {
+const Timer = ({ quizStarted, quizFinished, hasTestQuestions }) => {
   const [time, setTime] = useState(25 * 60);
 
   useEffect(() => {
     let timer;
-    if (quizStarted && !quizFinished) {
+    if (quizStarted && !quizFinished && hasTestQuestions) {
       timer = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime <= 0) {
@@ -19,7 +19,7 @@ const Timer = ({ quizStarted, quizFinished }) => {
     }
 
     return () => clearInterval(timer);
-  }, [quizStarted, quizFinished]);
+  }, [quizStarted, quizFinished, hasTestQuestions]);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -38,6 +38,7 @@ const Timer = ({ quizStarted, quizFinished }) => {
 Timer.propTypes = {
   quizStarted: PropTypes.bool.isRequired,
   quizFinished: PropTypes.bool.isRequired,
+  hasTestQuestions: PropTypes.bool.isRequired,
 };
 
 export default Timer;
