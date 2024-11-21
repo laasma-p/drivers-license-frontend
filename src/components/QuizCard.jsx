@@ -56,27 +56,20 @@ const QuizCard = ({
       setSelectedStatements(newSelectedStatements);
       setIsStatementSelected(newSelectedStatements.length > 0);
 
-      let savingMarkResultsEndpoint;
-
       if (quizStarted) {
-        savingMarkResultsEndpoint = "http://localhost:3000/mark-test-results";
-      } else {
-        savingMarkResultsEndpoint =
-          "http://localhost:3000/mark-practice-results";
+        await fetch("http://localhost:3000/mark-test-results", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            test_taker_id: testTakerId,
+            question_id: questionId,
+            user_selected_answers: newSelectedStatements,
+          }),
+        });
       }
-
-      await fetch(savingMarkResultsEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          test_taker_id: testTakerId,
-          question_id: questionId,
-          user_selected_answers: newSelectedStatements,
-        }),
-      });
     } catch (error) {
       console.error(
         "Error marking the statement for the practice question:",
