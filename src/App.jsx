@@ -11,7 +11,7 @@ function App() {
 
   const authorizationHandler = async (enteredCode) => {
     try {
-      const response = await fetch("http://localhost:3000/verify-code", {
+      const response = await fetch("http://localhost:3000/admin/verify-code", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

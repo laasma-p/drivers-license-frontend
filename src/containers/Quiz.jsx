@@ -20,7 +20,7 @@ const Quiz = () => {
     const fetchPracticeQuestions = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/practice-questions"
+          "http://localhost:3000/quiz/practice-questions"
         );
         if (response.ok) {
           const data = await response.json();
@@ -39,7 +39,9 @@ const Quiz = () => {
   useEffect(() => {
     const fetchTestQuestions = async () => {
       try {
-        const response = await fetch("http://localhost:3000/test-questions");
+        const response = await fetch(
+          "http://localhost:3000/quiz/test-questions"
+        );
         if (response.ok) {
           const data = await response.json();
           setTestQuestions(data);
@@ -71,7 +73,7 @@ const Quiz = () => {
       const testTakerId = localStorage.getItem("test_taker_id");
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/results/${testTakerId}`,
+        `http://localhost:3000/quiz/results/${testTakerId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -57,7 +57,7 @@ const QuizCard = ({
       setIsStatementSelected(newSelectedStatements.length > 0);
 
       if (quizStarted) {
-        await fetch("http://localhost:3000/mark-test-results", {
+        await fetch("http://localhost:3000/quiz/mark-test-results", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
