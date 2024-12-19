@@ -33,7 +33,10 @@ const Authorization = ({ onAuthorization, errorMessage }) => {
 
   return (
     <div className="container mx-auto font-sans">
-      <p className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center">
+      <p
+        className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center"
+        id="code-instructions"
+      >
         Enter the code you have received from the examiner:
       </p>
       <div className="flex justify-center">
@@ -41,8 +44,12 @@ const Authorization = ({ onAuthorization, errorMessage }) => {
           onSubmit={authorizeCodeHandler}
           className="w-5/6 flex flex-col max-w-md pb-6"
         >
-          <p className="text-red-400 text-lg">{error}</p>
-          <p className="text-red-400 text-lg">{errorMessage}</p>
+          <p className="text-red-400 text-lg" role="alert" aria-live="polite">
+            {error}
+          </p>
+          <p className="text-red-400 text-lg" role="alert" aria-live="polite">
+            {errorMessage}
+          </p>
           <label
             htmlFor="code"
             className="text-gray-950 pb-1 text-lg font-semibold"
@@ -55,6 +62,8 @@ const Authorization = ({ onAuthorization, errorMessage }) => {
             id="code"
             value={enteredCode}
             onChange={enteredCodeHandler}
+            aria-describedby="code-instructions code-error"
+            aria-invalid={error ? "true" : "false"}
           />
           <button
             type="submit"
