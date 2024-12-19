@@ -6,12 +6,21 @@ const Instructions = ({ onNavigate }) => {
   };
 
   return (
-    <div className="container flex flex-col mx-auto px-8 pt-8 sm:pt-20 md:max-w-2xl">
-      <h1 className="text-xl text-gray-950">Welcome to the theory exam.</h1>
-      <p className="text-lg text-gray-950">
+    <div
+      className="container flex flex-col mx-auto px-8 pt-8 sm:pt-20 md:max-w-2xl"
+      role="main"
+    >
+      <h1 className="text-xl text-gray-950" id="instructions-heading">
+        Welcome to the theory exam.
+      </h1>
+      <p className="text-lg text-gray-950" id="instructions-intro">
         The instructions for it are as follows:
       </p>
-      <ul className="mt-6 mb-4 text-gray-950">
+      <ul
+        className="mt-6 mb-4 text-gray-950"
+        role="list"
+        aria-labelledby="instructions-heading"
+      >
         <li>
           You have 25 minutes to fill out the test. Each question consists of an
           image about a situation, an explanation of it and several statements
@@ -39,8 +48,10 @@ const Instructions = ({ onNavigate }) => {
       </p>
       <div className="flex sm:justify-end">
         <button
+          type="button"
           onClick={navigateToNextHandler}
           className="w-full sm:w-28 mt-4 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-colors rounded-md"
+          aria-describedby="instructions-intro"
         >
           Continue
         </button>
