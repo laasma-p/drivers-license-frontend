@@ -29,7 +29,12 @@ const Timer = ({ quizStarted, quizFinished, hasTestQuestions }) => {
     .padStart(2, "0")}`;
 
   return (
-    <p data-testid="timer" className="text-gray-950 text-sm md:text-lg">
+    <p
+      data-testid="timer"
+      className="text-gray-950 text-sm md:text-lg"
+      role="status"
+      aria-live="polite"
+    >
       {quizFinished && "Time remaining:"} {formattedTime}
     </p>
   );

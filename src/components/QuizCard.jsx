@@ -136,6 +136,7 @@ const QuizCard = ({
                   className="w-4 h-4 ml-1 mr-3 cursor-pointer"
                   checked={selectedStatements.includes(index + 1)}
                   onChange={() => statementSelectionHandler(index + 1)}
+                  aria-label={`Statement ${index + 1}`}
                 />
                 <div className="w-full">
                   <label

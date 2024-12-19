@@ -96,7 +96,7 @@ const Quiz = () => {
   };
 
   return (
-    <div data-testid="quiz">
+    <div data-testid="quiz" role="main">
       <Header
         quizStarted={quizStarted}
         quizFinished={quizFinished}
