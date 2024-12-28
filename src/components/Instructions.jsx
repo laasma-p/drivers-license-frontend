@@ -1,6 +1,15 @@
+import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 const Instructions = ({ onNavigate }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.focus();
+    }
+  }, []);
+
   const navigateToNextHandler = () => {
     onNavigate();
   };
@@ -9,18 +18,16 @@ const Instructions = ({ onNavigate }) => {
     <div
       className="container flex flex-col mx-auto px-8 pt-8 sm:pt-20 md:max-w-2xl"
       role="main"
+      ref={containerRef}
+      tabIndex="-1"
     >
       <h1 className="text-xl text-gray-950" id="instructions-heading">
         Welcome to the theory exam.
       </h1>
-      <p className="text-lg text-gray-950" id="instructions-intro">
+      <p className="text-lg text-gray-950">
         The instructions for it are as follows:
       </p>
-      <ul
-        className="mt-6 mb-4 text-gray-950"
-        role="list"
-        aria-labelledby="instructions-heading"
-      >
+      <ul className="mt-6 mb-4 text-gray-950" role="list">
         <li>
           You have 25 minutes to fill out the test. Each question consists of an
           image about a situation, an explanation of it and several statements
@@ -41,7 +48,7 @@ const Instructions = ({ onNavigate }) => {
           well as mistakes (if any).
         </li>
       </ul>
-      <p className="text-gray-950">
+      <p className="text-gray-950" id="instructions">
         Before the test itself, two test questions will be presented to
         familiarize yourself with the test structure. After clicking on "Start"
         button, the test starts.
@@ -51,7 +58,7 @@ const Instructions = ({ onNavigate }) => {
           type="button"
           onClick={navigateToNextHandler}
           className="w-full sm:w-28 mt-4 text-gray-100 bg-sky-400 hover:bg-sky-700 py-2 transition-colors rounded-md"
-          aria-describedby="instructions-intro"
+          aria-describedby="instructions"
         >
           Continue
         </button>
