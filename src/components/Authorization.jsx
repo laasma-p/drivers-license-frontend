@@ -39,11 +39,7 @@ const Authorization = ({ onAuthorization, errorMessage }) => {
   };
 
   return (
-    <div
-      className="container mx-auto font-sans"
-      role="main"
-      aria-labelledby="code-instructions"
-    >
+    <div className="container mx-auto font-sans" role="main">
       <h1
         className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center"
         id="code-instructions"
