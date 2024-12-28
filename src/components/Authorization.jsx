@@ -44,13 +44,13 @@ const Authorization = ({ onAuthorization, errorMessage }) => {
       role="main"
       aria-labelledby="code-instructions"
     >
-      <p
+      <h1
         className="text-xl text-gray-950 px-4 pt-40 pb-6 text-center"
         id="code-instructions"
         tabIndex="-1"
       >
         Enter the code you have received from the examiner:
-      </p>
+      </h1>
       <div className="flex justify-center">
         <form
           onSubmit={authorizeCodeHandler}
