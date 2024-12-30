@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const Timer = ({ quizStarted, quizFinished, hasTestQuestions }) => {
   const [time, setTime] = useState(25 * 60);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     let timer;
@@ -13,6 +14,11 @@ const Timer = ({ quizStarted, quizFinished, hasTestQuestions }) => {
             clearInterval(timer);
             return 0;
           }
+
+          if (prevTime === 300) {
+            setAlertMessage("5 minutes remaining.");
+          }
+
           return prevTime - 1;
         });
       }, 1000);
@@ -29,14 +35,18 @@ const Timer = ({ quizStarted, quizFinished, hasTestQuestions }) => {
     .padStart(2, "0")}`;
 
   return (
-    <p
-      data-testid="timer"
-      className="text-gray-950 text-sm md:text-lg"
-      role="status"
-      aria-live="polite"
-    >
-      {quizFinished && "Time remaining:"} {formattedTime}
-    </p>
+    <>
+      <p
+        data-testid="timer"
+        className="text-gray-950 text-sm md:text-lg"
+        aria-hidden="true"
+      >
+        {quizFinished && "Time remaining:"} {formattedTime}
+      </p>
+      <p role="alert" aria-live="assertive" className="sr-only">
+        {alertMessage}
+      </p>
+    </>
   );
 };
 
