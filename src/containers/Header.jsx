@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import logo from "../assets/logo.png";
 import Timer from "./Timer";
 import PropTypes from "prop-types";
@@ -9,6 +10,14 @@ const Header = ({
   totalQuestions,
   hasTestQuestions,
 }) => {
+  const currentQuestionRef = useRef(null);
+
+  useEffect(() => {
+    if (currentQuestionRef.current) {
+      currentQuestionRef.current.focus();
+    }
+  }, [currentQuestionIndex]);
+
   return (
     <header
       data-testid="header"
@@ -21,7 +30,8 @@ const Header = ({
           {quizStarted && (
             <span
               className="ml-2 md:ml-4 text-gray-950 text-sm md:text-lg"
-              aria-live="polite"
+              ref={currentQuestionRef}
+              tabIndex="-1"
             >
               Question {currentQuestionIndex + 1} / {totalQuestions}
             </span>
