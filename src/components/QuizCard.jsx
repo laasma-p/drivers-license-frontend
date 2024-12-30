@@ -100,6 +100,8 @@ const QuizCard = ({
     <div
       data-testid="quiz-card"
       className="w-11/12 mt-3 mb-4 md:flex max-w-7xl"
+      role="region"
+      aria-labelledby="question"
     >
       <div className="md:w-1/2 p-2">
         <img
@@ -114,7 +116,10 @@ const QuizCard = ({
       </div>
       <form className="md:w-1/2 p-2 flex flex-col justify-between">
         <div className="md:h-4/5">
-          <h2 className="text-2xl text-gray-950 font-semibold mb-2">
+          <h2
+            className="text-2xl text-gray-950 font-semibold mb-2"
+            id="question"
+          >
             {quizStarted
               ? currentQuestion.question
               : currentQuestion.test_question}
@@ -129,6 +134,8 @@ const QuizCard = ({
                 className={`px-3 py-2 border border-gray-300 rounded-md flex items-center transition-colors duration-300 ${
                   selectedStatements.includes(index + 1) ? "bg-gray-200" : ""
                 }`}
+                role="checkbox"
+                aria-checked={selectedStatements.includes(index + 1)}
               >
                 <input
                   type="checkbox"
@@ -136,7 +143,6 @@ const QuizCard = ({
                   className="w-4 h-4 ml-1 mr-3 cursor-pointer"
                   checked={selectedStatements.includes(index + 1)}
                   onChange={() => statementSelectionHandler(index + 1)}
-                  aria-label={`Statement ${index + 1}`}
                 />
                 <div className="w-full">
                   <label
@@ -163,6 +169,7 @@ const QuizCard = ({
               }`}
               onClick={nextClickHandler}
               disabled={!isStatementSelected}
+              aria-disabled={!isStatementSelected}
             >
               Next
             </button>
@@ -177,6 +184,7 @@ const QuizCard = ({
               }`}
               onClick={quizStarted ? nextClickHandler : onQuizStart}
               disabled={!isStatementSelected}
+              aria-disabled={!isStatementSelected}
             >
               {quizStarted ? "Finish" : "Start"}
             </button>

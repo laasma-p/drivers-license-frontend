@@ -1,7 +1,7 @@
 import QuizCard from "../components/QuizCard";
 import Header from "./Header";
 import Results from "./Results";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Quiz = () => {
   const [practiceQuestions, setPracticeQuestions] = useState([]);
@@ -15,6 +15,14 @@ const Quiz = () => {
   const [hasPassed, setHasPassed] = useState(false);
   const [incorrectQuestions, setIncorrectQuestions] = useState([]);
   const [hasTestQuestions, setHasTestQuestions] = useState(false);
+
+  const quizRef = useRef(null);
+
+  useEffect(() => {
+    if (quizRef.current && (quizStarted || showResults)) {
+      quizRef.current.focus();
+    }
+  }, [quizStarted, showResults]);
 
   useEffect(() => {
     const fetchPracticeQuestions = async () => {
@@ -96,7 +104,7 @@ const Quiz = () => {
   };
 
   return (
-    <div data-testid="quiz" role="main">
+    <div data-testid="quiz" role="main" ref={quizRef} tabIndex="-1">
       <Header
         quizStarted={quizStarted}
         quizFinished={quizFinished}
@@ -112,7 +120,7 @@ const Quiz = () => {
           incorrectQuestions={incorrectQuestions}
         />
       ) : (
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center" aria-label="Question area">
           <QuizCard
             practiceQuestions={practiceQuestions}
             testQuestions={testQuestions}
